@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "license": "MIT",
   "repository": "git@github.com:Financial-Times/next-auto-example.git",
+  "scripts": {
+    "precommit": "node_modules/.bin/secret-squirrel",
+    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
+    "prepush": "make verify -j3"
+  },
   "dependencies": {
     "@financial-times/n-auto-logger": "^3.5.0",
     "@financial-times/n-auto-metrics": "^3.3.0",
     "@financial-times/n-error": "^1.0.5",
-    "express": "^4.16.3"
+    "@financial-times/n-express": "^19.14.4"
   },
   "devDependencies": {
+    "@financial-times/n-gage": "^2.0.2",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.5",
