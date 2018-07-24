@@ -32,7 +32,7 @@ info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-
 ```
 
 ### unhappy case
-open your browser, and go to [localhost:5000/random-value](localhost:5000/random-value), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
+open your browser, and go to [localhost:5000/random](localhost:5000/random), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
 * verbose
 ```
 info:  operation=getUserProfileBySession, transactionId=d9d25bf6-3513-42a6-b121-24ed71409f5e
