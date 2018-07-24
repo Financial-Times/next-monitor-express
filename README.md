@@ -4,7 +4,7 @@ minimal example to demo how [n-auto-logger](https://github.com/Financial-Times/n
 
 
 ## demo
-This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics. It uses descriptive error object (most convinent using [n-error](https://github.com/Financial-Times/n-error)) to throw errors to be handled by a common error-handler.
+This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics. It uses descriptive error object (most convenient using [n-error](https://github.com/Financial-Times/n-error)) to throw errors to be handled by a common error-handler.
 
 ```shell
 make install
