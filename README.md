@@ -31,7 +31,7 @@ info:  operation=getUserProfileBySession, result=success
 ```
 ```
 
-### unhappy case
+### unhappy case - invalid session
 open your browser, and go to [localhost:5000/random](localhost:5000/random), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
 * verbose
 ```
@@ -48,4 +48,25 @@ warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR,
 * error
 ```
 warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+```
+
+### unhappy case - bad session
+open your browser, and go to [localhost:5000/bad-session](localhost:5000/bad-session), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
+* verbose
+```
+info:  operation=getUserProfileBySession
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session, result=success
+info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+```
+* concise
+```
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+```
+* error
+```
+warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
 ```
