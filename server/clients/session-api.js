@@ -6,6 +6,7 @@ import nError from '@financial-times/n-error';
 const ERROR_MESSAGES = {
 	SESSION_ID_NOT_VALID: 'sessionId is not valid',
 	SESSION_NOT_FOUND: 'session data not found for given sessionId',
+	NOT_AUTHORISED: 'you are not authorised to access the data',
 };
 
 /*
@@ -72,7 +73,9 @@ const verifySession = async ({ sessionId, meta }) => {
 		if (e.status && e.status >= 400 && e.status < 500) {
 			// e.status checks it is a valid FETCH_RESPONSE_ERROR
 			// we can also use e.category === 'FETCH_RESPONSE_ERROR' from n-error
-			throw e.extend({ user: { status: 403 } });
+			throw e.extend({
+				user: { status: 403, message: ERROR_MESSAGES.NOT_AUTHORISED },
+			});
 		} else {
 			// other errors caught here still need to be thrown so that they can be caught on a higher level
 			throw e;
