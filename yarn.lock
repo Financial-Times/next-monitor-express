@@ -92,39 +92,39 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@financial-times/n-api-factory@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-api-factory/-/n-api-factory-1.1.1.tgz#f303887b185e598acad590567120a53d60fad889"
+"@financial-times/n-api-factory@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-api-factory/-/n-api-factory-1.1.2.tgz#e67e193a1ef4e3a8e7b246f4ca890fa072726ac8"
   dependencies:
-    "@financial-times/n-error" "^1.0.5"
+    "@financial-times/n-error" "^1.0.6"
     "@financial-times/n-utils" "^0.1.0"
-    node-fetch "^2.1.2"
+    node-fetch "^2.2.0"
 
-"@financial-times/n-auto-logger@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-logger/-/n-auto-logger-3.5.0.tgz#149de46be5af6e5d36bf30e6a25966d6b85fcd44"
+"@financial-times/n-auto-logger@^3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-logger/-/n-auto-logger-3.5.1.tgz#1f0dc346ab1bee25995acc665d883c14990bd86e"
   dependencies:
-    "@financial-times/n-error" "^1.0.5"
+    "@financial-times/n-error" "^1.0.6"
     "@financial-times/n-express-enhancer" "^1.5.0"
-    "@financial-times/n-logger" "^5.6.3"
+    "@financial-times/n-logger" "^5.7.2"
     "@financial-times/n-utils" "^0.1.0"
-    node-fetch "^2.1.2"
-    uuid "^3.2.1"
+    node-fetch "^2.2.0"
+    uuid "^3.3.2"
 
 "@financial-times/n-auto-metrics@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-metrics/-/n-auto-metrics-3.3.0.tgz#47fa757df8b60c07c1fe4d7a0a84eed5b48bb254"
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-metrics/-/n-auto-metrics-3.3.1.tgz#cbefd038b831a7121ccab62de8b865f61ee8bce5"
   dependencies:
     "@financial-times/n-express-enhancer" "^1.5.0"
 
-"@financial-times/n-error@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-error/-/n-error-1.0.5.tgz#7ade8f97ee0d051a4c1a2a47c0b25790f0b8c18f"
+"@financial-times/n-error@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-error/-/n-error-1.0.6.tgz#d79e2c8f1a289921fba60706ee9a492771078fb6"
   dependencies:
     "@financial-times/n-utils" "^0.1.0"
     camelcase "^5.0.0"
     isomorphic-fetch "^2.2.1"
-    node-fetch "^2.0.0"
+    node-fetch "^2.2.0"
 
 "@financial-times/n-express-enhancer@^1.5.0":
   version "1.5.0"
@@ -182,9 +182,9 @@
     stylelint-scss "^2.2.0"
     yargs "^10.0.3"
 
-"@financial-times/n-logger@^5.0.2", "@financial-times/n-logger@^5.3.0", "@financial-times/n-logger@^5.4.8", "@financial-times/n-logger@^5.5.3", "@financial-times/n-logger@^5.5.6", "@financial-times/n-logger@^5.5.7", "@financial-times/n-logger@^5.6.3", "@financial-times/n-logger@^5.6.4":
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-logger/-/n-logger-5.7.1.tgz#8d00d8a7a8530434cdb67aa3f2ae1ab2da77d3b3"
+"@financial-times/n-logger@^5.0.2", "@financial-times/n-logger@^5.3.0", "@financial-times/n-logger@^5.4.8", "@financial-times/n-logger@^5.5.3", "@financial-times/n-logger@^5.5.6", "@financial-times/n-logger@^5.5.7", "@financial-times/n-logger@^5.6.4", "@financial-times/n-logger@^5.7.2":
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-logger/-/n-logger-5.7.2.tgz#b51fd65ba73815d925684414976c90388519b14f"
   dependencies:
     isomorphic-fetch "^2.2.1"
     request "^2.83.0"
@@ -210,8 +210,8 @@
   resolved "https://registry.yarnpkg.com/@financial-times/n-utils/-/n-utils-0.1.0.tgz#2ba1deb0e47aea7fe553a516b3f18fa5088abb17"
 
 "@financial-times/secret-squirrel@^2.6.0":
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/@financial-times/secret-squirrel/-/secret-squirrel-2.10.0.tgz#c9db639c28651fb3225c01f3e259ec6f27ced560"
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/secret-squirrel/-/secret-squirrel-2.10.1.tgz#0d3a0da52e2465e9ed1762201e939a6797672662"
   dependencies:
     escape-string-regexp "^1.0.5"
     require-uncached "^1.0.3"
@@ -633,8 +633,8 @@ autoprefixer@^7.1.2:
     postcss-value-parser "^3.2.3"
 
 aws-sdk@^2.266.1, aws-sdk@^2.6.10:
-  version "2.279.1"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.279.1.tgz#3a4fd4167932e4361dbdcfcb174ce4840ffcbf20"
+  version "2.280.1"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.280.1.tgz#73a152ef68456c66d303b0938cb64479ee02de5b"
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -4594,7 +4594,7 @@ node-fetch@^1.0.1, node-fetch@^1.5.1, node-fetch@^1.6.3:
     encoding "^0.1.11"
     is-stream "^1.0.1"
 
-node-fetch@^2.0.0, node-fetch@^2.1.2:
+node-fetch@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
 
@@ -4702,8 +4702,8 @@ npm-bundled@^1.0.1:
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.3.tgz#7e71703d973af3370a9591bafe3a63aca0be2308"
 
 npm-packlist@^1.1.6:
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.1.10.tgz#1039db9e985727e464df066f4cf0ab6ef85c398a"
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/npm-packlist/-/npm-packlist-1.1.11.tgz#84e8c683cbe7867d34b1d357d893ce29e28a02de"
   dependencies:
     ignore-walk "^3.0.1"
     npm-bundled "^1.0.1"
@@ -6584,8 +6584,8 @@ unist-util-stringify-position@^1.0.0, unist-util-stringify-position@^1.1.1:
   resolved "https://registry.yarnpkg.com/unist-util-stringify-position/-/unist-util-stringify-position-1.1.2.tgz#3f37fcf351279dcbca7480ab5889bb8a832ee1c6"
 
 unist-util-visit-parents@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/unist-util-visit-parents/-/unist-util-visit-parents-2.0.0.tgz#9d4f6354e2944ce9176e953f646b884998738cd3"
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/unist-util-visit-parents/-/unist-util-visit-parents-2.0.1.tgz#63fffc8929027bee04bfef7d2cce474f71cb6217"
   dependencies:
     unist-util-is "^2.1.2"
 
@@ -6673,7 +6673,7 @@ uuid@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
-uuid@^3.1.0, uuid@^3.2.1:
+uuid@^3.1.0, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 

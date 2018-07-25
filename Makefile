@@ -5,7 +5,7 @@ node_modules/@financial-times/n-gage/index.mk:
 -include node_modules/@financial-times/n-gage/index.mk
 
 install:
-	@yarn --ignore-engines
+	@npm install
 
 run:
 	@rm -rf .build

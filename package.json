@@ -9,10 +9,10 @@
     "prepush": "make verify -j3"
   },
   "dependencies": {
-    "@financial-times/n-api-factory": "^1.1.1",
-    "@financial-times/n-auto-logger": "^3.5.0",
+    "@financial-times/n-api-factory": "^1.1.2",
+    "@financial-times/n-auto-logger": "^3.5.1",
     "@financial-times/n-auto-metrics": "^3.3.0",
-    "@financial-times/n-error": "^1.0.5",
+    "@financial-times/n-error": "^1.0.6",
     "@financial-times/n-express": "^19.14.4"
   },
   "devDependencies": {
