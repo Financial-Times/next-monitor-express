@@ -16,16 +16,16 @@ make run
 open your browser, and go to [localhost:5000/good-session](localhost:5000/good-session), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
 * verbose
 ```
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, service=session-api, action=verifySession, sessionId=good-session
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, service=session-api, action=verifySession, sessionId=good-session, result=success
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id, result=success
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, result=success
+info:  operation=getUserProfileBySession
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session, result=success
+info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id
+info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id, result=success
+info:  operation=getUserProfileBySession, result=success
 ```
 * concise
 ```
-info:  operation=getUserProfileBySession, transactionId=a3d55744-e860-47ab-862e-ff6c10000e60, result=success
+info:  operation=getUserProfileBySession, result=success
 ```
 * error
 ```
