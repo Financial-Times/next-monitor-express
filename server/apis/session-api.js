@@ -1,58 +1,87 @@
 import { logAction, compose } from '@financial-times/n-auto-logger';
 import { metricsAction, tagService } from '@financial-times/n-auto-metrics';
+import setupService from '@financial-times/n-api-factory';
 import nError from '@financial-times/n-error';
-
-const SESSION_DATA = {
-	'good-session': {
-		userId: 'good-session-user-id',
-	},
-};
 
 const ERROR_MESSAGES = {
 	SESSION_ID_NOT_VALID: 'sessionId is not valid',
 	SESSION_NOT_FOUND: 'session data not found for given sessionId',
 };
 
-/* eslint-disable no-unused-vars */
-// meta is used to pass operationName, transactionId, and other prepend meta
-// to fetch call to upstream services
-const verifySession = async ({ sessionId, meta }) => {
-	/* eslint-enable no-unused-vars */
+/*
+	essential arguments needed to setup an API client
+ */
+const config = {
+	API_HOST: 'http://localhost:5000',
+	API_KEY: 'dummy-api-key',
+};
 
-	// customised validation on top standardised ones
-	// user error message / error code to help locate the exact place where similar kind of errors could happen
-	// e.g. there may be different case of 404 here, thus using error message/code to help locate
+const sessionApi = setupService(config);
+
+/*
+	CONVENTION: action function signature needs to use object ({ ...params, meta }) =>{}
+	* meta is used to record operationName, actionName, transactionId, etc. and pass them to logger, metrics
+ */
+const verifySession = async ({ sessionId, meta }) => {
+	/*
+		EXTRA ERROR HANDLING: add extra param validation on top of the ones included in n-api-factory
+		DEBUG: unique error message/code can help locate the error; stack is useful, but tends to be noisy
+	 */
 	if (!sessionId) {
 		throw nError.notFound({ message: ERROR_MESSAGES.SESSION_ID_NOT_VALID });
 	}
 
 	try {
-		// can use n-api-factory to setup standardised fetch service error handling
-		const data = SESSION_DATA[sessionId];
+		/*
+			use n-api-factory enhanced fetch with default error parsing
+		 */
+		const data = await sessionApi.get({
+			endpoint: `/session/${sessionId}`,
+			meta, // data in meta such as transactionId would be used in request header
+		});
 
-		// in case the error handling from upstream api service is suitable for the app:
-		// customised post-fetch validation to complement api error handling
-		// e.g. when session-api is returning undefined with status 200 instead of 404 due to certain reason
-		// we can add customised error hanlding based on the return data post-fetch
+		/*
+			EXTRA ERROR HANDLING: sometimes error handling in the api may not be properly implemented due to historical reasons
+			to make some immediate retification we can add extra validation to complement the error handling
+
+			e.g. here the session-api-mock is returning `undefined` with status 200 when session data is not found
+			we can add some extra validation post-fetch to throw a 404 error properly
+
+			note: EXTRA ERROR HANDLING may indicate that an improvement to the api is needed if it is something general
+		 */
 		if (!data) {
 			throw nError.notFound({ message: ERROR_MESSAGES.SESSION_NOT_FOUND });
 		}
 
 		return data;
 	} catch (e) {
-		// override error code to passed to downstream service
-		// fields in user wouldn't be logged, as these are information useful for downstream
-		// e.g. when session-api throws any 4XX error, to downstream service it indicates authentification failure
+		/*
+			ERROR OVERRIDE/ENRICHMENT(use try-catch block and override error in catch based on rules):
+
+			the common use case of this is to override error code to passed to downstream service
+			e.g. here when session-api throws a 4XX error, it indicates authentification failure to downstream service
+			in order to use a common server error-handler to pass information to downstream services correctly we add statusCode for downstream in user object
+
+			CONVENTION: any information specific to downstream services or end users is added to user object in error
+			note: user field would be ignored by n-auto-logger by default, as information here doesn't help debugging
+		 */
 		if (e.status && e.status >= 400 && e.status < 500) {
-			// we can also use e.category === 'FETCH_RESPONSE.ERROR' from n-error
+			// e.status checks it is a valid FETCH_RESPONSE_ERROR
+			// we can also use e.category === 'FETCH_RESPONSE_ERROR' from n-error
 			throw e.extend({ user: { status: 403 } });
 		} else {
+			// other errors caught here still need to be thrown so that they can be caught on a higher level
 			throw e;
 		}
 	}
 };
 
+// compose: this is equivelant to
+// tagService('session-api')(metricsAction(logAction(verifySession)))
 export default compose(
+	// CONVENTION: tagService needs to be before the other enhancers
+	// so that the data can be picked up by the other enhancers
+	// under the hood, the enhancer functions would be executed in the following order
 	tagService('session-api'),
 	metricsAction,
 	logAction,

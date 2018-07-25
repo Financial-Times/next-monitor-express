@@ -42,10 +42,10 @@ warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR,
 ```
 * concise
 ```
-warn:  operation=getUserProfileBySession, transactionId=ee1097fd-e79e-48a7-b926-afb43873e48b, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-warn:  operation=getUserProfileBySession, transactionId=ee1097fd-e79e-48a7-b926-afb43873e48b, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
 * error
 ```
-warn:  operation=getUserProfileBySession, transactionId=8093a71d-f8ab-4ce5-8c17-ce6a749e215e, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
