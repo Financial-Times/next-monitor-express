@@ -9,4 +9,4 @@ install:
 
 run:
 	@rm -rf .build
-	@node_modules/.bin/webpack
+	@node_modules/.bin/node-hot

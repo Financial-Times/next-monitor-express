@@ -1,7 +1,5 @@
-const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const StartServerPlugin = require('start-server-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
@@ -35,15 +33,5 @@ module.exports = {
 			},
 		],
 	},
-	plugins: [
-		new StartServerPlugin('server.js'),
-		new webpack.HotModuleReplacementPlugin(),
-	],
-	stats: {
-		modules: false,
-		hash: false,
-		version: false,
-		colors: true,
-		assets: false,
-	},
+	stats: 'minimal',
 };

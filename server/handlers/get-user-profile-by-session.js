@@ -1,8 +1,8 @@
 import { logOperation, toMiddleware } from '@financial-times/n-auto-logger';
 import { metricsOperation, compose } from '@financial-times/n-auto-metrics';
 
-import SessionApi from '../apis/session-api-mock';
-import UserProfileSvc from '../apis/user-profile-svc-mock';
+import SessionApi from '../apis/session-api';
+import UserProfileSvc from '../apis/user-profile-svc';
 
 const getUserProfileBySession = async (meta, req, res) => {
 	const { sessionId } = req.params;

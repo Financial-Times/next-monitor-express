@@ -16,12 +16,10 @@ const ERROR_MESSAGES = {
 /* eslint-disable no-unused-vars */
 // meta is used to pass operationName, transactionId, and other prepend meta
 // to fetch call to upstream services
-const verifySession = async ({ sessionId }, meta) => {
+const verifySession = async ({ sessionId, meta }) => {
 	/* eslint-enable no-unused-vars */
 
 	// customised validation on top standardised ones
-	// TODO: integrate validation into n-api-factory as a standard
-	// QUESTION: does it improve efficiency by reducing network calls or increase expense on validation
 	// user error message / error code to help locate the exact place where similar kind of errors could happen
 	// e.g. there may be different case of 404 here, thus using error message/code to help locate
 	if (!sessionId) {
