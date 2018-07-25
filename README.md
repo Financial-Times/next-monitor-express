@@ -35,10 +35,10 @@ info:  operation=getUserProfileBySession, result=success
 open your browser, and go to [localhost:5000/random](localhost:5000/random), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
 * verbose
 ```
-info:  operation=getUserProfileBySession, transactionId=d9d25bf6-3513-42a6-b121-24ed71409f5e
-info:  operation=getUserProfileBySession, transactionId=d9d25bf6-3513-42a6-b121-24ed71409f5e, service=session-api, action=verifySession, sessionId=random
-warn:  operation=getUserProfileBySession, transactionId=d9d25bf6-3513-42a6-b121-24ed71409f5e, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-warn:  operation=getUserProfileBySession, transactionId=d9d25bf6-3513-42a6-b121-24ed71409f5e, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+info:  operation=getUserProfileBySession
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random
+warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
 * concise
 ```
