@@ -11,6 +11,7 @@ const ERROR_MESSAGES = {
 
 /*
 	essential arguments needed to setup an API client
+	TEST/PROD config swtich can be setup here
  */
 const config = {
 	API_HOST: 'http://localhost:5000',

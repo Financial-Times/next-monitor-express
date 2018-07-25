@@ -2,6 +2,9 @@ const SESSION_DATA = {
 	'good-session': {
 		userId: 'good-session-user-id',
 	},
+	'bad-session': {
+		userId: 'corrupted-data',
+	},
 };
 
 /*

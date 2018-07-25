@@ -15,7 +15,10 @@ export default async (req, res) => {
 	const data = USER_PROFILE_DATA[userId];
 
 	if (!data) {
-		res.status(404).text('user profile not found for given userId');
+		res
+			.set('Content-Type', 'text/plain')
+			.status(404)
+			.send('user profile not found for given userId');
 	}
 
 	res.json(data);
