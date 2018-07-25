@@ -48,6 +48,10 @@ const verifySession = async ({ sessionId, meta }) => {
 			we can add some extra validation post-fetch to throw a 404 error properly
 
 			note: EXTRA ERROR HANDLING may indicate that an improvement to the api is needed if it is something general
+
+			note: nError is not necessary for n-auto-logger to log errors properly
+			try just throwing an object here or a native Node error
+			remember to update the error override in catch block 😉
 		 */
 		if (!data) {
 			throw nError.notFound({ message: ERROR_MESSAGES.SESSION_NOT_FOUND });
