@@ -1,5 +1,5 @@
 # next-auto-example
-minimal example to demo how [n-auto-logger](https://github.com/Financial-Times/n-auto-logger), [n-auto-metrics](https://github.com/Financial-Times/n-auto-metrics) can be setup with [n-express](https://github.com/Financial-Times/n-express)
+minimal example to demo how [n-express-monitor](https://github.com/Financial-Times/n-express-monitor) can be setup with [n-express](https://github.com/Financial-Times/n-express)
 > also applicable to [express](https://github.com/expressjs/express) with a metrics instance setup
 
 
