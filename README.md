@@ -1,4 +1,4 @@
-# next-auto-example
+# next-monitored-express
 minimal example to demo how [n-express-monitor](https://github.com/Financial-Times/n-express-monitor) can be setup with [n-express](https://github.com/Financial-Times/n-express)
 > also applicable to [express](https://github.com/expressjs/express) with a metrics instance setup
 
