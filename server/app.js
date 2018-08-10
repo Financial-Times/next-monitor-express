@@ -1,6 +1,5 @@
 import express, { metrics } from '@financial-times/n-express';
-import { initAutoMetrics } from '@financial-times/n-auto-metrics';
-import { addTransactionId } from '@financial-times/n-auto-logger';
+import { setupMonitor } from '@financial-times/n-express-monitor';
 
 import getUserProfileBySession from './handlers/get-user-profile-by-session';
 import sessionApiMock from './handlers/session-api-mock';
@@ -11,13 +10,11 @@ const app = express({
 	systemCode: 'next-auto-example',
 });
 
-// tooling instance setup
-initAutoMetrics(metrics);
-
-// middlewares setup
-app.use(addTransactionId);
+// monitor tooling setup
+setupMonitor({ app, metrics });
 
 // router setup
+app.get('/favicon.ico', (req, res) => res.status(204));
 app.use('/session/:sessionId', sessionApiMock);
 app.use('/user-profile/:userId', userProfileSvcMock);
 app.use('/:sessionId', getUserProfileBySession);

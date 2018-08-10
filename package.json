@@ -10,13 +10,12 @@
   },
   "dependencies": {
     "@financial-times/n-api-factory": "^1.1.2",
-    "@financial-times/n-auto-logger": "^3.5.1",
-    "@financial-times/n-auto-metrics": "^3.3.0",
     "@financial-times/n-error": "^1.0.6",
-    "@financial-times/n-express": "^19.14.6"
+    "@financial-times/n-express": "^19.15.1",
+    "@financial-times/n-express-monitor": "^1.0.0-beta.1"
   },
   "devDependencies": {
-    "@financial-times/n-gage": "^2.0.2",
+    "@financial-times/n-gage": "^2.0.3",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.5",
@@ -35,7 +34,7 @@
     "node-hot-loader": "^1.10.1",
     "prettier": "^1.14.0",
     "supertest": "^3.1.0",
-    "webpack": "^4.16.3",
+    "webpack": "^4.16.5",
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {

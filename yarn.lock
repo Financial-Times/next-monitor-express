@@ -100,22 +100,22 @@
     "@financial-times/n-utils" "^0.1.0"
     node-fetch "^2.2.0"
 
-"@financial-times/n-auto-logger@^3.5.1":
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-logger/-/n-auto-logger-3.5.1.tgz#1f0dc346ab1bee25995acc665d883c14990bd86e"
+"@financial-times/n-auto-logger@^4.0.0-beta":
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-logger/-/n-auto-logger-4.0.0-beta.1.tgz#a25c80e5e219f748e5e4133de13076160aaea55a"
   dependencies:
     "@financial-times/n-error" "^1.0.6"
-    "@financial-times/n-express-enhancer" "^1.5.0"
+    "@financial-times/n-express-enhancer" "^1.8.0"
     "@financial-times/n-logger" "^5.7.2"
     "@financial-times/n-utils" "^0.1.0"
     node-fetch "^2.2.0"
     uuid "^3.3.2"
 
-"@financial-times/n-auto-metrics@^3.3.0":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-metrics/-/n-auto-metrics-3.3.1.tgz#cbefd038b831a7121ccab62de8b865f61ee8bce5"
+"@financial-times/n-auto-metrics@^4.0.0-beta":
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-auto-metrics/-/n-auto-metrics-4.0.0-beta.1.tgz#4f8f8a1c493fd6d682918f990e9eb5342336e0c2"
   dependencies:
-    "@financial-times/n-express-enhancer" "^1.5.0"
+    "@financial-times/n-express-enhancer" "^1.8.0"
 
 "@financial-times/n-error@^1.0.6":
   version "1.0.6"
@@ -126,15 +126,22 @@
     isomorphic-fetch "^2.2.1"
     node-fetch "^2.2.0"
 
-"@financial-times/n-express-enhancer@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-express-enhancer/-/n-express-enhancer-1.5.0.tgz#e60c57852a3d045ae32ebca124aefb92bacb0b67"
+"@financial-times/n-express-enhancer@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-express-enhancer/-/n-express-enhancer-1.8.0.tgz#0faa9cfe835d7935b767cdc333451440d062dd88"
   dependencies:
     compose-function "^3.0.3"
 
-"@financial-times/n-express@^19.14.6":
-  version "19.14.6"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-express/-/n-express-19.14.6.tgz#4698f6d67595791c19d115ee41ae56492b726ece"
+"@financial-times/n-express-monitor@^1.0.0":
+  version "1.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-express-monitor/-/n-express-monitor-1.0.0-beta.1.tgz#fed53f38f8a76c47154e2df22aa6f98df69dbf1e"
+  dependencies:
+    "@financial-times/n-auto-logger" "^4.0.0-beta"
+    "@financial-times/n-auto-metrics" "^4.0.0-beta"
+
+"@financial-times/n-express@^19.15.1":
+  version "19.15.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-express/-/n-express-19.15.1.tgz#429380f5ecc8e11daeb27d25f0c6a9dfb7e38796"
   dependencies:
     "@financial-times/n-flags-client" "^9.1.5"
     "@financial-times/n-logger" "^5.6.4"
@@ -164,9 +171,9 @@
     n-eager-fetch "^2.1.0"
     vary "^1.1.2"
 
-"@financial-times/n-gage@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-gage/-/n-gage-2.0.2.tgz#b6e4890c2ef6e8a9bd5976243ac5648bb0adf925"
+"@financial-times/n-gage@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-gage/-/n-gage-2.0.3.tgz#60efe3f9cf1bc001a67d1dc7ea55e1237e03235d"
   dependencies:
     "@financial-times/n-fetch" "^1.0.0-beta.4"
     "@financial-times/secret-squirrel" "^2.6.0"
@@ -6857,9 +6864,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.16.3:
-  version "4.16.3"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.16.3.tgz#861be3176d81e7e3d71c66c8acc9bba35588b525"
+webpack@^4.16.5:
+  version "4.16.5"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.16.5.tgz#29fb39462823d7eb8aefcab8b45f7f241db0d092"
   dependencies:
     "@webassemblyjs/ast" "1.5.13"
     "@webassemblyjs/helper-module-context" "1.5.13"

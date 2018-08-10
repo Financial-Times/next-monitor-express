@@ -1,5 +1,4 @@
-import { logAction, compose } from '@financial-times/n-auto-logger';
-import { metricsAction, tagService } from '@financial-times/n-auto-metrics';
+import { monitorService } from '@financial-times/n-express-monitor';
 import setupService from '@financial-times/n-api-factory';
 import nError from '@financial-times/n-error';
 
@@ -24,7 +23,7 @@ const sessionApi = setupService(config);
 	CONVENTION: action function signature needs to use object ({ ...params, meta }) =>{}
 	* meta is used to record operationName, actionName, transactionId, etc. and pass them to logger, metrics
  */
-const verifySession = async ({ sessionId, meta }) => {
+const verifySession = async ({ sessionId }, meta) => {
 	/*
 		EXTRA ERROR HANDLING: add extra param validation on top of the ones included in n-api-factory
 		DEBUG: unique error message/code can help locate the error; stack is useful, but tends to be noisy
@@ -84,15 +83,6 @@ const verifySession = async ({ sessionId, meta }) => {
 	}
 };
 
-// compose: this is equivelant to
-// tagService('session-api')(metricsAction(logAction(verifySession)))
-export default compose(
-	// CONVENTION: tagService needs to be before the other enhancers
-	// so that the data can be picked up by the other enhancers
-	// under the hood, the enhancer functions would be executed in the following order
-	tagService('session-api'),
-	metricsAction,
-	logAction,
-)({
+export default monitorService('session-api', {
 	verifySession,
 });

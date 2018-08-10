@@ -14,6 +14,6 @@ export default function(err, req, res, next) {
 			message,
 		});
 	} else {
-		res.status(500).text('internal server error');
+		res.status(500).send('internal server error');
 	}
 }
