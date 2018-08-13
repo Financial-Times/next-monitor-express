@@ -7,7 +7,7 @@ import userProfileSvcMock from './handlers/user-profile-svc-mock';
 import errorHandler from './middlewares/error-handler';
 
 const app = express({
-	systemCode: 'next-auto-example',
+	systemCode: 'next-monitor-express',
 });
 
 // monitor tooling setup

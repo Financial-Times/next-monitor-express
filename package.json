@@ -1,8 +1,8 @@
 {
-  "name": "next-auto-example",
+  "name": "next-monitor-express",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "git@github.com:Financial-Times/next-auto-example.git",
+  "repository": "git@github.com:Financial-Times/next-monitor-express.git",
   "scripts": {
     "precommit": "node_modules/.bin/secret-squirrel",
     "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
