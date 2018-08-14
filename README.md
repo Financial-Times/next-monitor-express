@@ -6,34 +6,55 @@ this is an example to demonstrate how [n-express-monitor](https://github.com/Fin
 <br>
 
 - [setup](#setup)
+- [operation-action model](#operation-action-model)
 - [examples](#examples)
-  * [standard mode for debugging](#standard-mode-for-debugging)
-  * [concise mode for development](#concise-mode-for-development)
-  * [error mode for production](#error-mode-for-production)
+  * [standard mode](#standard-mode)
+  * [concise mode](#concise-mode)
+  * [error mode](#error-mode)
   
 <br> 
 
 ## setup
-This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics.
+
+The example api server has an endpoint for `getUserProfileBySession`, calling two mocked upstream apis. Service clients and express controllers are all monitored via [n-express-monitor](https://github.com/Financial-Times/n-express-monitor).
 
 ```shell
 make install
-make .env # or setup .env with mock values
+make .env # or setup .env with values for different modes
 make run
 ```
 
 
+## operation-action model
+
+Operation-action model is introduced to reflect the general structure of most express codebase, and to constraint unnecessary function layering. 
+
+Operations are essestially express middlewares and controllers, and operations can be chained together to perform certain user journey, e.g. `signup = [checkUserProfile] -> [createUserProfile] -> [createPaymentAccount] -> [createSubscription]`. 
+
+Actions are reusable single purpose functions that have predictable input and output, which can be composed to complete an operation.
+
+In the example server here, the operation-action model can be illustrated as the following:
+
+- getUserProfileBySession (operation)
+  * uncovered function (uncovered action)
+  * verifySession (action)
+  * getUserProfileById (action)
+  
+
+
 ## examples
 
-### standard mode for debugging
+### standard mode
 
-the following config are used by default in .env to have concise log in dev:
+**recommended for development or debugging**
+
+In standard mode, success/failure of operation and its underlying actions/functions would be logged; Function call input would be logged to help reproducing errors;
+
+.env:
 ```
 AUTO_LOG_LEVEL=standard
 LOGGER_MUTE_FIELDS=stack, contentType, category, transactionId, requestId
 ```
-
-In standard mode, success/failure of operation and its underlying actions/functions would be logged; Function call input would be logged to help reproducing errors;
 
 [good request](http://localhost:5000/good-session):
 ```
@@ -61,15 +82,17 @@ error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_
 ```
 
 
-### concise mode for development
+### concise mode
 
-the following config are used by default in .env to have concise log in dev:
+**recommended for development or debugging**
+
+In concise mode, only the success/failure of the operation would be logged, and action leading to the operation would be included in the error log; input params of the action would be omitted;
+
+.env:
 ```
 AUTO_LOG_LEVEL=concise
 LOGGER_MUTE_FIELDS=stack, contentType, result, category, transactionId, requestId
 ```
-
-In concise mode, only the success/failure of the actions would be logged, which would be tagged with operation and service they have been threaded; params in function calls wouldn't be logged.
 
 [good request](http://localhost:5000/good-session):
 ```
@@ -92,17 +115,19 @@ warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUs
 ```
 ```
 
-### error mode for production
+### error mode
 
-the following config are used by default in .env to have concise log in dev:
+**recommended for production**
+
+In error mode, only the failure of operation would be logged (tagged with related action and service); input params of the action function and the error category would be included to help identify the cause and reproduce the error; ContentType is recommended to proof and report error parsing mistakes;
+
+> Alerts can be setup both based on log or metrics.
+
+.env:
 ```
 AUTO_LOG_LEVEL=error
 LOGGER_MUTE_FIELDS=stack, transactionId
 ```
-
-In error mode, only the failure of actions would be logged (tagged with related operation and service); Input to the function, category of the error would be logged to help identify the cause of the error; ContentType is recommended to proof and report error parsing mistakes;
-
-Alerts can be setup both based on log or metrics;
 
 [good request](http://localhost:5000/good-session) -> only metrics, no log
 
