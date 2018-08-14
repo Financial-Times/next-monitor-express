@@ -14,6 +14,7 @@ const app = express({
 setupMonitor({ app, metrics });
 
 // router setup
+app.get('/__gtg', (req, res) => res.status(200));
 app.get('/favicon.ico', (req, res) => res.status(204));
 app.use('/api/session/:sessionId', sessionApiMock);
 app.use('/api/user-profile/:userId', userProfileSvcMock);
