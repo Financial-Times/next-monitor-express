@@ -96,17 +96,17 @@ info:  operation=getUserProfileBySession
 
 [bad request failed 1st step](http://localhost:5000/random):
 ```
-warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, status=404, message=session data not found for given sessionId
+warn:  requestId=6bab6fe7-e1e5-483e-9279-70da1bec5ce1, operation=getUserProfileBySession, service=session-api, action=verifySession, status=404, message=session data not found for given sessionId
 ```
 
 [bad request failed 2nd step](http://localhost:5000/bad-session):
 ```
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, status=404, message=user profile not found for given userId
+warn:  requestId=6bab6fe7-e1e5-483e-9279-70da1bec5ce1, operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, status=404, message=user profile not found for given userId
 ```
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 ```
-error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
+error:  requestId=6bab6fe7-e1e5-483e-9279-70da1bec5ce1, operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
 
 ### standard mode
