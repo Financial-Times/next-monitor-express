@@ -3,8 +3,15 @@ this is an example to demonstrate how [n-express-monitor](https://github.com/Fin
 
 > also applicable to [express](https://github.com/expressjs/express) with a metrics instance setup
 
+- [setup](#setup)
+- [example](#example)
+  * [monitor success](#monitor-success)
+  * [monitor failure - failed 1st step](#monitor-failure---failed-1st-step)
+  * [monitor failure - failed 2nd step](#monitor-failure---failed-2nd-step)
+  
+<br> 
 
-## demo
+## setup
 This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics.
 
 ```shell
@@ -13,12 +20,13 @@ make .env # or setup .env with mock values
 make run
 ```
 
-### configure logger
 the following config are used by default in .env:
 ```
 AUTO_LOG_LEVEL=concise
 LOGGER_MUTE_FIELDS=stack, transactionId, requestId
 ```
+
+## example
 
 ### monitor success
 open [localhost:5000/good-session](localhost:5000/good-session), this would trigger a successful request and would be logged as:
