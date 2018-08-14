@@ -162,20 +162,13 @@ error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_
 
 ### common metrics
 
-[good request](http://localhost:5000/good-session):
+metrics would be recorded in 3 scopes, as specified by [n-auto-metrics](https://github.com/financial-Times/n-auto-metrics#metrics-format)
 
-`operation.getUserProfileBySession.segment.undefined.state.start` + 1
-`operation.getUserProfileBySession.segment.undefined.state.success` + 1
+* operation.{operation}.segment.{segment}.state.{state} (used to measure user journey conversion with segments)
+* operation.{operation}.action.{action}.state.{state} (used to measure reliability of operation)
+* service.{service}.action.{action}.state.{state} (used to measure reliability of upstream services)
 
-`operation.getUserProfileBySession.action.verifySession.state.start` + 1
-`operation.getUserProfileBySession.action.verifySession.state.success` + 1
-`operation.getUserProfileBySession.action.getUserProfileById.state.start` + 1
-`operation.getUserProfileBySession.action.getUserProfileById.state.success` + 1
-
-`service.sessionApi.action.verifySession.state.start` + 1
-`service.sessionApi.action.verifySession.state.success` + 1
-`service.userProfileSvc.action.getUserProfileById.state.start` + 1
-`service.userProfileSvc.action.getUserProfileById.state.success` + 1
+some examples:
 
 [bad request failed 1st step](http://localhost:5000/random):
 
@@ -187,21 +180,6 @@ error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_
 
 `service.sessionApi.action.verifySession.state.start` + 1
 `service.sessionApi.action.verifySession.state.failure.category.CUSTOM_ERROR.status.404` + 1
-
-[bad request failed 2nd step](http://localhost:5000/bad-session):
-
-`operation.getUserProfileBySession.segment.undefined.state.start` + 1
-`operation.getUserProfileBySession.segment.undefined.state.failure.category.FETCH_RESPONSE_ERROR.type.undefined` + 1
-
-`operation.getUserProfileBySession.action.verifySession.state.start` + 1
-`operation.getUserProfileBySession.action.verifySession.state.success` + 1
-`operation.getUserProfileBySession.action.getUserProfileById.state.start` + 1
-`operation.getUserProfileBySession.action.getUserProfileById.state.failure.category.FETCH_RESPONSE_ERROR.status.404` + 1
-
-`service.sessionApi.action.verifySession.state.start` + 1
-`service.sessionApi.action.verifySession.state.success` + 1
-`service.userProfileSvc.action.getUserProfileById.state.start` + 1
-`service.userProfileSvc.action.getUserProfileById.state.failure.category.FETCH_RESPONSE_ERROR.status.404` + 1
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 
