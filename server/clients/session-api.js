@@ -13,7 +13,7 @@ const ERROR_MESSAGES = {
 	TEST/PROD config swtich can be setup here
  */
 const config = {
-	API_HOST: 'http://localhost:5000',
+	API_HOST: 'http://localhost:5000/api',
 	API_KEY: 'dummy-api-key',
 };
 

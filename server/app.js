@@ -1,9 +1,9 @@
 import express, { metrics } from '@financial-times/n-express';
 import { setupMonitor } from '@financial-times/n-express-monitor';
 
-import getUserProfileBySession from './handlers/get-user-profile-by-session';
-import sessionApiMock from './handlers/session-api-mock';
-import userProfileSvcMock from './handlers/user-profile-svc-mock';
+import getUserProfileBySession from './controllers/get-user-profile-by-session';
+import sessionApiMock from './apis/session-api-mock';
+import userProfileSvcMock from './apis/user-profile-svc-mock';
 import errorHandler from './middlewares/error-handler';
 
 const app = express({
@@ -15,8 +15,8 @@ setupMonitor({ app, metrics });
 
 // router setup
 app.get('/favicon.ico', (req, res) => res.status(204));
-app.use('/session/:sessionId', sessionApiMock);
-app.use('/user-profile/:userId', userProfileSvcMock);
+app.use('/api/session/:sessionId', sessionApiMock);
+app.use('/api/user-profile/:userId', userProfileSvcMock);
 app.use('/:sessionId', getUserProfileBySession);
 
 // error handler setup

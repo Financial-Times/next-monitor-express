@@ -2,7 +2,7 @@ import { monitorService } from '@financial-times/n-express-monitor';
 import setupService from '@financial-times/n-api-factory';
 
 const config = {
-	API_HOST: 'http://localhost:5000',
+	API_HOST: 'http://localhost:5000/api',
 	API_KEY: 'dummy-api-key',
 };
 
