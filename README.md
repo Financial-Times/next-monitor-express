@@ -7,7 +7,7 @@ this is an example to demonstrate how [n-express-monitor](https://github.com/Fin
 
 - [setup](#setup)
 - [operation-action model](#operation-action-model)
-- [examples](#examples)
+- [monitor](#monitor)
   * [standard mode](#standard-mode)
   * [concise mode](#concise-mode)
   * [error mode](#error-mode)
@@ -27,7 +27,7 @@ make run
 
 ## operation-action model
 
-Operation-action model is introduced to reflect the general structure of most express codebase, and to constraint unnecessary function layering. 
+Operation-action model is introduced to reflect the general structure of most express codebase, and to constraint unnecessary function layering. This can essentially be translated as `event-step` model as well.
 
 Operations are essestially express middlewares and controllers, and operations can be chained together to perform certain user journey, e.g. `signup = [checkUserProfile] -> [createUserProfile] -> [createPaymentAccount] -> [createSubscription]`. 
 
@@ -42,7 +42,7 @@ In the example server here, the operation-action model can be illustrated as the
   
 
 
-## examples
+## monitor
 
 ### standard mode
 
@@ -86,7 +86,7 @@ error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_
 
 **recommended for development or debugging**
 
-In concise mode, only the success/failure of the operation would be logged, and action leading to the operation would be included in the error log; input params of the action would be omitted;
+In concise mode, only the success/failure of the operation would be logged, and action leading to the operation would be included in the error log; input params of the action would be omitted; This is best for showing how a user journey is complete via a series of operations.
 
 .env:
 ```
@@ -96,8 +96,7 @@ LOGGER_MUTE_FIELDS=stack, contentType, result, category, transactionId, requestI
 
 [good request](http://localhost:5000/good-session):
 ```
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession
-info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById
+info:  operation=getUserProfileBySession
 ```
 
 [bad request failed 1st step](http://localhost:5000/random):
@@ -107,12 +106,12 @@ warn:  operation=getUserProfileBySession, service=session-api, action=verifySess
 
 [bad request failed 2nd step](http://localhost:5000/bad-session):
 ```
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession
 warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, status=404, message=user profile not found for given userId
 ```
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 ```
+error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
 
 ### error mode
@@ -143,4 +142,5 @@ warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUs
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 ```
+error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
