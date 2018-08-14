@@ -164,9 +164,9 @@ error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_
 
 metrics would be recorded in 3 scopes, as specified by [n-auto-metrics](https://github.com/financial-Times/n-auto-metrics#metrics-format)
 
-* operation.{operation}.segment.{segment}.state.{state} (used to measure user journey conversion with segments)
-* operation.{operation}.action.{action}.state.{state} (used to measure reliability of operation)
-* service.{service}.action.{action}.state.{state} (used to measure reliability of upstream services)
+* `operation.{operation}.segment.{segment}.state.{state}` (used to measure user journey conversion with segments)
+* `operation.{operation}.action.{action}.state.{state}` (used to measure reliability of operation)
+* `service.{service}.action.{action}.state.{state}` (used to measure reliability of upstream services)
 
 some examples:
 
