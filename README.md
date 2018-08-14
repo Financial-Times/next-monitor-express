@@ -5,9 +5,9 @@ this is an example to demonstrate how [n-express-monitor](https://github.com/Fin
 
 - [setup](#setup)
 - [example](#example)
-  * [monitor success](#monitor-success)
-  * [monitor failure - failed 1st step](#monitor-failure---failed-1st-step)
-  * [monitor failure - failed 2nd step](#monitor-failure---failed-2nd-step)
+  * [when success](#when-success)
+  * [when failed 1st step](#when-failed-1st-step)
+  * [when failed 2nd step](#when-failed-2nd-step)
   
 <br> 
 
@@ -23,27 +23,27 @@ make run
 the following config are used by default in .env:
 ```
 AUTO_LOG_LEVEL=concise
-LOGGER_MUTE_FIELDS=stack, transactionId, requestId
+LOGGER_MUTE_FIELDS=stack, contentType, transactionId, requestId
 ```
 
 ## example
 
-### monitor success
-open [localhost:5000/good-session](localhost:5000/good-session), this would trigger a successful request and would be logged as:
+### when success
+[good request](localhost:5000/good-session):
 ```
 info:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=success
 info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, result=success
 ```
 
-### monitor failure - failed 1st step
-open [localhost:5000/random](localhost:5000/random), this would trigger a request failed on 1st step and would be logged as:
+### when failed 1st step
+[bad request with random input](localhost:5000/random):
 ```
 warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
 
-### monitor failure - failed 2nd step
-open [localhost:5000/bad-session](localhost:5000/bad-session), this would trigger a request failed on 2nd step and would be logged as:
+### when failed 2nd step
+[bad request with bad session](localhost:5000/bad-session):
 ```
 info:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=success
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId
 ```
