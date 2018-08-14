@@ -1,10 +1,11 @@
 # next-monitor-express
-minimal example to demo how [n-express-monitor](https://github.com/Financial-Times/n-express-monitor) can be setup with [n-express](https://github.com/Financial-Times/n-express)
+this is an example to demonstrate how [n-express-monitor](https://github.com/Financial-Times/n-express-monitor) can be setup with [n-express](https://github.com/Financial-Times/n-express) and how it could help improve log coverage efficiently with systematic control, and streamline debugging experience
+
 > also applicable to [express](https://github.com/expressjs/express) with a metrics instance setup
 
 
 ## demo
-This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics. It uses descriptive error object (most convenient using [n-error](https://github.com/Financial-Times/n-error)) to throw errors to be handled by a common error-handler.
+This is a simple api server to provide the endpoint for `getUserProfileBySession` combing two mocked upstream apis, with every function properly logged in operation-action model and recorded in corresponding metrics.
 
 ```shell
 make install
@@ -12,61 +13,29 @@ make .env # or setup .env with mock values
 make run
 ```
 
-### happy case
-open your browser, and go to [localhost:5000/good-session](localhost:5000/good-session), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
-* verbose
+### configure logger
+the following config are used by default in .env:
 ```
-info:  operation=getUserProfileBySession
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session, result=success
-info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id
-info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id, result=success
-info:  operation=getUserProfileBySession, result=success
-```
-* concise
-```
-info:  operation=getUserProfileBySession, result=success
-```
-* error
-```
+AUTO_LOG_LEVEL=concise
+LOGGER_MUTE_FIELDS=stack, transactionId, requestId
 ```
 
-### unhappy case - invalid session
-open your browser, and go to [localhost:5000/random](localhost:5000/random), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
-* verbose
+### monitor success
+open [localhost:5000/good-session](localhost:5000/good-session), this would trigger a successful request and would be logged as:
 ```
-info:  operation=getUserProfileBySession
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random
-warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-```
-* concise
-```
-warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
-```
-* error
-```
-warn:  operation=getUserProfileBySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=success
+info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, result=success
 ```
 
-### unhappy case - bad session
-open your browser, and go to [localhost:5000/bad-session](localhost:5000/bad-session), this should be logged on the server as the following according to the `AUTO_LOG_LEVEL` setting:
-* verbose
+### monitor failure - failed 1st step
+open [localhost:5000/random](localhost:5000/random), this would trigger a request failed on 1st step and would be logged as:
 ```
-info:  operation=getUserProfileBySession
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session, result=success
-info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
-warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
-* concise
+
+### monitor failure - failed 2nd step
+open [localhost:5000/bad-session](localhost:5000/bad-session), this would trigger a request failed on 2nd step and would be logged as:
 ```
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-date, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
-warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
-```
-* error
-```
-warn:  operation=getUserProfileBySession, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, result=success
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
 ```
