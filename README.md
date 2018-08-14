@@ -8,9 +8,10 @@ this is an example to demonstrate how [n-express-monitor](https://github.com/Fin
 - [setup](#setup)
 - [operation-action model](#operation-action-model)
 - [monitor](#monitor)
-  * [standard mode](#standard-mode)
-  * [concise mode](#concise-mode)
   * [error mode](#error-mode)
+  * [concise mode](#concise-mode)
+  * [standard mode](#standard-mode)
+  * [common metrics](#common-metrics)
   
 <br> 
 
@@ -44,43 +45,37 @@ In the example server here, the operation-action model can be illustrated as the
 
 ## monitor
 
-### standard mode
 
-**recommended for development or debugging**
+### error mode
 
-In standard mode, success/failure of operation and its underlying actions/functions would be logged; Function call input would be logged to help reproducing errors;
+**recommended for production**
+
+In error mode, only the failure of operation would be logged (tagged with related action and service); input params of the action function and the error category would be included to help identify the cause and reproduce the error; ContentType is recommended to proof and report error parsing mistakes;
+
+> Alerts can be setup both based on log or metrics.
 
 .env:
 ```
-AUTO_LOG_LEVEL=standard
-LOGGER_MUTE_FIELDS=stack, contentType, category, transactionId, requestId
+AUTO_LOG_LEVEL=error
+LOGGER_MUTE_FIELDS=stack, transactionId
 ```
 
-[good request](http://localhost:5000/good-session):
-```
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session, result=success
-info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id, result=success
-info:  operation=getUserProfileBySession, result=success
-```
+[good request](http://localhost:5000/good-session) -> only metrics, no log
 
 [bad request failed 1st step](http://localhost:5000/random):
 ```
-warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, status=404, message=session data not found for given sessionId
-warn:  operation=getUserProfileBySession, result=failure, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
 ```
 
 [bad request failed 2nd step](http://localhost:5000/bad-session):
 ```
-info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session, result=success
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-data, result=failure, status=404, message=user profile not found for given userId
-warn:  operation=getUserProfileBySession, result=failure, status=404, message=user profile not found for given userId
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-data, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
 ```
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 ```
 error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
-
 
 ### concise mode
 
@@ -114,33 +109,101 @@ warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUs
 error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
 
-### error mode
+### standard mode
 
-**recommended for production**
+**recommended for development or debugging**
 
-In error mode, only the failure of operation would be logged (tagged with related action and service); input params of the action function and the error category would be included to help identify the cause and reproduce the error; ContentType is recommended to proof and report error parsing mistakes;
-
-> Alerts can be setup both based on log or metrics.
+In standard mode, success/failure of operation and its underlying actions/functions would be logged; Function call input would be logged to help reproducing errors;
 
 .env:
 ```
-AUTO_LOG_LEVEL=error
-LOGGER_MUTE_FIELDS=stack, transactionId
+AUTO_LOG_LEVEL=standard
+LOGGER_MUTE_FIELDS=stack, contentType, category, transactionId, requestId
 ```
 
-[good request](http://localhost:5000/good-session) -> only metrics, no log
+[good request](http://localhost:5000/good-session):
+```
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=good-session, result=success
+info:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=good-session-user-id, result=success
+info:  operation=getUserProfileBySession, result=success
+```
+metrics:
+
+`operation.getUserProfileBySession.segment.undefined.state.start` + 1
+`operation.getUserProfileBySession.segment.undefined.state.success` + 1
+
+`operation.getUserProfileBySession.action.verifySession.state.start` + 1
+`operation.getUserProfileBySession.action.verifySession.state.success` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.start` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.success` + 1
+
+`service.sessionApi.action.verifySession.state.start` + 1
+`service.sessionApi.action.verifySession.state.success` + 1
+`service.userProfileSvc.action.getUserProfileById.state.start` + 1
+`service.userProfileSvc.action.getUserProfileById.state.success` + 1
 
 [bad request failed 1st step](http://localhost:5000/random):
 ```
-warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, category=CUSTOM_ERROR, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=random, result=failure, status=404, message=session data not found for given sessionId
+warn:  operation=getUserProfileBySession, result=failure, status=404, message=session data not found for given sessionId
 ```
 
 [bad request failed 2nd step](http://localhost:5000/bad-session):
 ```
-warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-data, result=failure, category=FETCH_RESPONSE_ERROR, status=404, message=user profile not found for given userId, contentType=text/plain; charset=utf-8
+info:  operation=getUserProfileBySession, service=session-api, action=verifySession, sessionId=bad-session, result=success
+warn:  operation=getUserProfileBySession, service=user-profile-svc, action=getUserProfileById, userId=corrupted-data, result=failure, status=404, message=user profile not found for given userId
+warn:  operation=getUserProfileBySession, result=failure, status=404, message=user profile not found for given userId
 ```
 
 [request failed uncovered function](http://localhost:5000/uncovered):
 ```
 error:  operation=getUserProfileBySession, result=failure, category=NODE_SYSTEM_ERROR, name=Error, message=an uncovered function has thrown an error
 ```
+
+### common metrics
+
+[good request](http://localhost:5000/good-session):
+
+`operation.getUserProfileBySession.segment.undefined.state.start` + 1
+`operation.getUserProfileBySession.segment.undefined.state.success` + 1
+
+`operation.getUserProfileBySession.action.verifySession.state.start` + 1
+`operation.getUserProfileBySession.action.verifySession.state.success` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.start` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.success` + 1
+
+`service.sessionApi.action.verifySession.state.start` + 1
+`service.sessionApi.action.verifySession.state.success` + 1
+`service.userProfileSvc.action.getUserProfileById.state.start` + 1
+`service.userProfileSvc.action.getUserProfileById.state.success` + 1
+
+[bad request failed 1st step](http://localhost:5000/random):
+
+`operation.getUserProfileBySession.segment.undefined.state.start` + 1
+`operation.getUserProfileBySession.segment.undefined.state.failure.category.CUSTOM_ERROR.type.undefined` + 1
+
+`operation.getUserProfileBySession.action.verifySession.state.start` + 1
+`operation.getUserProfileBySession.action.verifySession.state.failure.category.CUSTOM_ERROR.status.404` + 1
+
+`service.sessionApi.action.verifySession.state.start` + 1
+`service.sessionApi.action.verifySession.state.failure.category.CUSTOM_ERROR.status.404` + 1
+
+[bad request failed 2nd step](http://localhost:5000/bad-session):
+
+`operation.getUserProfileBySession.segment.undefined.state.start` + 1
+`operation.getUserProfileBySession.segment.undefined.state.failure.category.FETCH_RESPONSE_ERROR.type.undefined` + 1
+
+`operation.getUserProfileBySession.action.verifySession.state.start` + 1
+`operation.getUserProfileBySession.action.verifySession.state.success` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.start` + 1
+`operation.getUserProfileBySession.action.getUserProfileById.state.failure.category.FETCH_RESPONSE_ERROR.status.404` + 1
+
+`service.sessionApi.action.verifySession.state.start` + 1
+`service.sessionApi.action.verifySession.state.success` + 1
+`service.userProfileSvc.action.getUserProfileById.state.start` + 1
+`service.userProfileSvc.action.getUserProfileById.state.failure.category.FETCH_RESPONSE_ERROR.status.404` + 1
+
+[request failed uncovered function](http://localhost:5000/uncovered):
+
+`operation.getUserProfileBySession.segment.undefined.state.start` + 1
+`operation.getUserProfileBySession.segment.undefined.state.failure.category.NODE_SYSTEM_ERROR.type.undefined` + 1
