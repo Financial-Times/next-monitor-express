@@ -91,7 +91,7 @@ LOGGER_MUTE_FIELDS=stack, contentType, result, category, transactionId, requestI
 
 [good request](http://localhost:5000/good-session):
 ```
-info:  operation=getUserProfileBySession
+info:  requestId=6bab6fe7-e1e5-483e-9279-70da1bec5ce1, operation=getUserProfileBySession
 ```
 
 [bad request failed 1st step](http://localhost:5000/random):
