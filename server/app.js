@@ -1,4 +1,5 @@
 import express, { metrics } from '@financial-times/n-express';
+import MaskLogger from '@financial-times/n-mask-logger';
 import { setupMonitor } from '@financial-times/n-express-monitor';
 
 import getUserProfileBySession from './controllers/get-user-profile-by-session';
@@ -11,7 +12,8 @@ const app = express({
 });
 
 // monitor tooling setup
-setupMonitor({ app, metrics });
+const logger = new MaskLogger(['sessionId']);
+setupMonitor({ app, metrics, logger });
 
 // router setup
 app.get('/__gtg', (req, res) => res.status(200));
