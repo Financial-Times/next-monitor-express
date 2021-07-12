@@ -148,21 +148,20 @@
     "@financial-times/n-auto-logger" "^4.1.2"
     "@financial-times/n-auto-metrics" "^4.0.0-beta.2"
 
-"@financial-times/n-express@^19.15.1":
-  version "19.15.1"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-express/-/n-express-19.15.1.tgz#429380f5ecc8e11daeb27d25f0c6a9dfb7e38796"
+"@financial-times/n-express@^21.0.17":
+  version "21.0.17"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-express/-/n-express-21.0.17.tgz#e08d396bb4d7fe696a365eb8f754df958da4f3dc"
+  integrity sha512-w8AvWaUA+ES9zaBtABP5eeRyfM40rbx3bf7IXadRPfvLSTBgVv5YGSap/j5Lb0zO4usmT1uTHNWSLpYaMksCMw==
   dependencies:
-    "@financial-times/n-flags-client" "^9.1.5"
-    "@financial-times/n-logger" "^5.6.4"
-    "@financial-times/n-raven" "^3.0.3"
-    aws-sdk "^2.266.1"
+    "@financial-times/n-flags-client" "^10.0.0"
+    "@financial-times/n-logger" "^8.0.0"
+    "@financial-times/n-raven" "^5.0.0"
     debounce "^1.1.0"
     denodeify "^1.2.1"
     express "^4.16.3"
-    ip "^1.1.5"
-    isomorphic-fetch "^2.2.1"
-    n-health "^2.3.2"
-    next-metrics "^1.49.18"
+    isomorphic-fetch "^3.0.0"
+    n-health "^5.0.0"
+    next-metrics "^5.0.23"
 
 "@financial-times/n-fetch@^1.0.0-beta.4":
   version "1.0.0-beta.5"
@@ -172,11 +171,12 @@
     http-errors "^1.6.1"
     node-fetch "^1.6.3"
 
-"@financial-times/n-flags-client@^9.1.5":
-  version "9.1.5"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-flags-client/-/n-flags-client-9.1.5.tgz#f16622da686229976cd047e2c9453c7fc0f59d7c"
+"@financial-times/n-flags-client@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-flags-client/-/n-flags-client-10.0.0.tgz#2c788fbed6f50ce90896f1ba2f211eb59d677209"
+  integrity sha512-+aeYoyFwMdtjpHovnXC+x29yfdLboWYZ6yyRL7CKPrifzOACaqvhz9qmfKcwPt4iRHb2lhexWSwxRLS4faf6/w==
   dependencies:
-    "@financial-times/n-logger" "^5.4.8"
+    "@financial-times/n-logger" "^6.0.0"
     n-eager-fetch "^2.1.0"
     vary "^1.1.2"
 
@@ -198,12 +198,30 @@
     stylelint-scss "^2.2.0"
     yargs "^10.0.3"
 
-"@financial-times/n-logger@^5.0.2", "@financial-times/n-logger@^5.3.0", "@financial-times/n-logger@^5.4.8", "@financial-times/n-logger@^5.5.3", "@financial-times/n-logger@^5.5.6", "@financial-times/n-logger@^5.5.7", "@financial-times/n-logger@^5.6.4", "@financial-times/n-logger@^5.7.2":
+"@financial-times/n-logger@^5.0.2", "@financial-times/n-logger@^5.3.0", "@financial-times/n-logger@^5.5.3", "@financial-times/n-logger@^5.5.6", "@financial-times/n-logger@^5.7.2":
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/@financial-times/n-logger/-/n-logger-5.7.2.tgz#b51fd65ba73815d925684414976c90388519b14f"
   dependencies:
     isomorphic-fetch "^2.2.1"
     request "^2.83.0"
+    winston "^2.4.0"
+
+"@financial-times/n-logger@^6.0.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-logger/-/n-logger-6.2.0.tgz#c2d3eb45516229276f66d27702a03cc6d87901d3"
+  integrity sha512-FTzinevWoQ/co6wQ16mCluJ5FfqaeSIZG1bvsphXLnEaGN5P5LeWd3ytTljAf85qlP/If4tcgqDd8Uhf7EWRuA==
+  dependencies:
+    json-stringify-safe "^5.0.1"
+    node-fetch "^2.6.0"
+    winston "^2.4.0"
+
+"@financial-times/n-logger@^8.0.0":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-logger/-/n-logger-8.0.1.tgz#7c43eb60547016581c4c14538449d7ce2e637555"
+  integrity sha512-Ezy1Xg9MHr6rgQf0AuYMcv/idRvAZ9ba7UYR7qov2rAtjMXPl6daS89J+j+uTCedIYVUcvC+Plitme17zARJYg==
+  dependencies:
+    json-stringify-safe "^5.0.1"
+    node-fetch "^2.6.0"
     winston "^2.4.0"
 
 "@financial-times/n-raven@^2.1.0":
@@ -214,11 +232,12 @@
     fetchres "^1.5.1"
     raven "^0.12.0"
 
-"@financial-times/n-raven@^3.0.3":
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-raven/-/n-raven-3.0.4.tgz#eaf1ea3d43df195c77aff87c3192241a7f7604e2"
+"@financial-times/n-raven@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-raven/-/n-raven-5.0.1.tgz#f795de6dcd9fad3a4ee22fec1b2f388773953ab6"
+  integrity sha512-rlAyrE7qdRngObEqtuko3p/Ei6CKvKaeA5e4FbMiC5xFWIiXnI8cHjWwkqoKHW8//XPB/O6iI0g2p4HRuOuDbA==
   dependencies:
-    "@financial-times/n-logger" "^5.5.7"
+    "@financial-times/n-logger" "^8.0.0"
     raven "^2.3.0"
 
 "@financial-times/n-utils@^0.1.0":
@@ -579,10 +598,6 @@ arrify@^1.0.0, arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-ascii-table@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/ascii-table/-/ascii-table-0.0.8.tgz#4362e14d231fc70c0c8f9749f30df4aa7f5ed8a6"
-
 asn1.js@^4.0.0:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-4.10.1.tgz#b9c2bf5805f1e64aadeed6df3a2bfafb5a73f5a0"
@@ -660,7 +675,7 @@ autoprefixer@^7.1.2:
     postcss "^6.0.17"
     postcss-value-parser "^3.2.3"
 
-aws-sdk@^2.266.1, aws-sdk@^2.6.10:
+aws-sdk@^2.6.10:
   version "2.292.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.292.0.tgz#c41ab7e85ea25c7b2300604ab950a5aadab702ab"
   dependencies:
@@ -1676,7 +1691,7 @@ combined-stream@1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@*, commander@^2.11.0, commander@^2.9.0:
+commander@*, commander@^2.11.0:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
@@ -3369,10 +3384,6 @@ invert-kv@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-1.0.0.tgz#104a8e4aaca6d3d8cd157a8ef8bfab2d7a3ffdb6"
 
-ip@^1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
-
 ipaddr.js@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.0.tgz#eaa33d6ddd7ace8f7f6fe0c9ca0440e706738b1e"
@@ -3670,12 +3681,20 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.0, isomorphic-fetch@^2.2.1:
+isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
     node-fetch "^1.0.1"
     whatwg-fetch ">=0.10.0"
+
+isomorphic-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-3.0.0.tgz#0267b005049046d2421207215d45d6a262b8b8b4"
+  integrity sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==
+  dependencies:
+    node-fetch "^2.6.1"
+    whatwg-fetch "^3.4.1"
 
 isstream@0.1.x, isstream@~0.1.2:
   version "0.1.2"
@@ -4146,7 +4165,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
 
-json-stringify-safe@5.0.1, json-stringify-safe@~5.0.1:
+json-stringify-safe@5.0.1, json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -4174,15 +4193,6 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
-
-keen-query@^3.2.7:
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/keen-query/-/keen-query-3.2.7.tgz#92610f32cc254607e3033eebbaad10e667a537b2"
-  dependencies:
-    ascii-table "^0.0.8"
-    commander "^2.9.0"
-    isomorphic-fetch "^2.2.0"
-    moment "^2.11.0"
 
 kew@^0.7.0:
   version "0.7.0"
@@ -4666,7 +4676,7 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.11.0, moment@^2.15.1:
+moment@^2.15.1:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
@@ -4701,15 +4711,15 @@ n-eager-fetch@^2.1.0:
     isomorphic-fetch "^2.1.1"
     npm-prepublish "^1.2.2"
 
-n-health@^2.3.2:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/n-health/-/n-health-2.5.1.tgz#259b77747db5a7fd9718582f4f43991cca1871a0"
+n-health@^5.0.0:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/n-health/-/n-health-5.0.3.tgz#7cbbb11605a2221547d747f3727c60f9eccd2631"
+  integrity sha512-Yltwf/Y4zFrnEZ4jb0icjWo4gI69GN5Pp8fkRfcWujD60XLWWGc2RB5bR0fUF25hbBYWRuOft1pYznCBFJ2LCw==
   dependencies:
-    "@financial-times/n-logger" "^5.3.0"
+    "@financial-times/n-logger" "^6.0.0"
     "@financial-times/n-raven" "^2.1.0"
     aws-sdk "^2.6.10"
     fetchres "^1.5.1"
-    keen-query "^3.2.7"
     moment "^2.15.1"
     ms "^2.0.0"
     node-fetch "^1.5.1"
@@ -4754,9 +4764,10 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
 
-next-metrics@^1.49.18:
-  version "1.51.0"
-  resolved "https://registry.yarnpkg.com/next-metrics/-/next-metrics-1.51.0.tgz#f41fb24b3075f671a179274cc7885299aadf6aab"
+next-metrics@^5.0.23:
+  version "5.0.24"
+  resolved "https://registry.yarnpkg.com/next-metrics/-/next-metrics-5.0.24.tgz#c48f30c0bcc3da09054e1b8c858217419177c568"
+  integrity sha512-DdTzeqYk5yiTXYjImM4jth5zOBhOPn4mwKI7+camvJW8AXSc5WvCdOlO4WE6lI/jzJRF7yEXzmRpkNmOvnpiVg==
   dependencies:
     "@financial-times/n-logger" "^5.5.6"
     lodash "^4.17.10"
@@ -4776,6 +4787,11 @@ node-fetch@^1.0.1, node-fetch@^1.5.1, node-fetch@^1.6.3:
 node-fetch@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
+
+node-fetch@^2.6.0, node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-hot-loader@^1.10.1:
   version "1.10.1"
@@ -7043,6 +7059,11 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
 whatwg-fetch@>=0.10.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
+
+whatwg-fetch@^3.4.1:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz#dced24f37f2624ed0281725d51d0e2e3fe677f8c"
+  integrity sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==
 
 whatwg-mimetype@^2.0.0, whatwg-mimetype@^2.1.0:
   version "2.1.0"
