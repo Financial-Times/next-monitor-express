@@ -141,9 +141,10 @@
   dependencies:
     compose-function "^3.0.3"
 
-"@financial-times/n-express-monitor@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@financial-times/n-express-monitor/-/n-express-monitor-1.1.0.tgz#b5981087cb26f48584aa160f3b5793e69084f365"
+"@financial-times/n-express-monitor@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@financial-times/n-express-monitor/-/n-express-monitor-1.1.2.tgz#3395993afa02be162ba125897ba452ecf34879ac"
+  integrity sha512-TadgI67PD1njM3PFzE9Qsw/SW7Yee6n7B8nPTfX1I6VvSNqFY8S1ifn4SaY06B1sqHd+2Phy01Q1exn7e2UoxQ==
   dependencies:
     "@financial-times/n-auto-logger" "^4.1.2"
     "@financial-times/n-auto-metrics" "^4.0.0-beta.2"
