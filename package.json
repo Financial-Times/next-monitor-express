@@ -38,6 +38,6 @@
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {
-    "node": ">=6.1.0"
+    "node": "12.x"
   }
 }
