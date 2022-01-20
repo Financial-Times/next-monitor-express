@@ -4,9 +4,8 @@
   "license": "MIT",
   "repository": "git@github.com:Financial-Times/next-monitor-express.git",
   "scripts": {
-    "precommit": "node_modules/.bin/secret-squirrel",
-    "commitmsg": "node_modules/.bin/secret-squirrel-commitmsg",
-    "prepush": "make verify -j3"
+    "prepare": "npx snyk protect || npx snyk protect -d || true",
+    "preinstall": "[ \"$INIT_CWD\" != \"$PWD\" ] || npm_config_yes=true npx check-engine"
   },
   "dependencies": {
     "@financial-times/n-api-factory": "^1.2.2",
@@ -21,6 +20,7 @@
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "check-engine": "^1.10.1",
     "coveralls": "^3.0.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "13.1.0",
@@ -38,6 +38,14 @@
     "webpack-node-externals": "^1.7.2"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.x",
+    "npm": "7.x || 8.x"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "node_modules/.bin/secret-squirrel-commitmsg",
+      "pre-commit": "node_modules/.bin/secret-squirrel",
+      "pre-push": "make verify -j3"
+    }
   }
 }
